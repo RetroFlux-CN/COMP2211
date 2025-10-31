@@ -19,3 +19,11 @@ if not issue_found:
 else:
 	print("Test Failed!")
 ```
+
+
+Summary of my models:
+MLP: Total params: 60,483 (236.26 KB)  89.7% on test dataset
+CNN: Total params: 52,865 (206.50 KB)  82.6% on test dataset
+I got 88.2% acc for mlp model, and 87.3% for cnn model on ZINC.
+
+Do not ask anything about my code!
