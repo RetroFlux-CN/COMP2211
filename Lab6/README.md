@@ -5,7 +5,7 @@
 4. run the code to see the result 
 If you have any problems, ask ofor help on the **Piazza**, not here.
 
-If you see some weird characters, change
+If you see some weird characters in the output, change
 ```python
 if not issue_found:
 	print("\033[92mTest Passed!\033[0m")
