@@ -3,7 +3,6 @@
 2. open `test_task2.py` and copy the code to your notebook **or** put the functions code in `test_task2.py`   
 3. put dataset files `.csv` to the corresponding folder
 4. run the code to see the result 
-If you have any problems, ask ofor help on the **Piazza**, not here.
 
 If you see some weird characters in the output, change
 ```python
@@ -28,4 +27,4 @@ Summary of my models:
 
 I got 88.2% acc for mlp model, and 87.3% for cnn model on ZINC.
 
-Do not ask anything about my code!
+You can ask questions in the discussion here instead of **Piazza**. If you want to know some secret.
