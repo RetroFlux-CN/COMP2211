@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://course.cse.ust.hk/comp2211/labs/lab9/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<!-- ### Change lab number ### -->
+    <title>COMP 2211 Lab 9: Minimax and Alpha-Beta Pruning</title>
+
+   <!-- Bootstrap core CSS -->
+  <link href="./COMP 2211 Lab 9_ Minimax and Alpha-Beta Pruning_files/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="./COMP 2211 Lab 9_ Minimax and Alpha-Beta Pruning_files/blog-home.css" rel="stylesheet">
+
+  <!-- For code highlighting -->
+  <link href="./COMP 2211 Lab 9_ Minimax and Alpha-Beta Pruning_files/prism.css" rel="stylesheet">
+
+  <style>
+    pre {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      border-left: 3px solid #f36d33;
+      color: #666;
+      page-break-inside: avoid;
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 1.6em;
+      max-width: 100%;
+      overflow: auto;
+      padding: 1em 1.5em;
+      display: block;
+      word-wrap: break-word;
+    }
+
+    span.input {
+      color: #00f700;
+      ;
+    }
+
+    /* table {
+      width: 100%;
+      display: inline-block;
+      overflow-x: auto;
+    }
+
+    table caption {
+      font-size: medium;
+    }
+
+    table thead th {
+      background-color: #ddd;
+    }
+
+    table th,
+    table td {
+      text-align: left;
+      padding: 3px 6px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #aaa #aaa;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #eee;
+    } */
+
+    blockquote {
+      border: 1px solid #b3b3b3;
+      border-left: 10px solid #b3b3b3;
+      border-radius: 0px;
+      background: #fafafa;
+      font-size: 18px;
+      font-family: Georgia, serif;
+      margin: 10px;
+      padding: 10px 20px;
+    }
+
+    blockquote p {
+      margin: 0;
+      line-height: 30px;
+      padding-bottom: 20px;
+    }
+
+    blockquote.small {
+      display: block;
+      font-size: 80%;
+      color: brown;
+      text-align: right;
+    }
+
+    code {
+      /* color: goldenrod; */
+      font-size: 1em;
+      /* background: none !important; */
+    }
+
+    figure.figure {
+      width: 100%;
+      text-align: center;
+    }
+
+    .bd-callout {
+      padding: 1.25rem;
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid #eee;
+      border-left-width: .25rem;
+      border-radius: .25rem;
+    }
+
+    .bd-callout h4 {
+      margin-top: 0;
+      margin-bottom: .25rem;
+    }
+
+    .bd-callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .bd-callout code {
+      border-radius: .25rem;
+    }
+
+    .bd-callout+.bd-callout {
+      margin-top: -.25rem;
+    }
+
+    .bd-callout-info {
+      border-left-color: #5bc0de;
+    }
+
+    .bd-callout-warning {
+      border-left-color: #f0ad4e;
+    }
+
+    .bd-callout-danger {
+      border-left-color: #d9534f;
+    }
+
+    .bd-callout-success {
+      border-left-color: #5cb85c;
+    }
+
+    .bd-callout-primary {
+      border-left-color: #428bca;
+    }
+
+    .bd-callout-info h6 {
+      color: #5bc0de;
+    }
+
+    .bd-callout-warning h6 {
+      color: #f0ad4e;
+    }
+
+    .bd-callout-danger h6 {
+      color: #d9534f;
+    }
+
+    .bd-callout-success h6 {
+      color: #5cb85c;
+    }
+
+    .bd-callout-primary h6 {
+      color: #428bca;
+    }
+  </style>
+  </head>
+
+  <body>
+  <script src="./COMP 2211 Lab 9_ Minimax and Alpha-Beta Pruning_files/prism.js.download"></script>
+  <!--     <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
+    <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script> -->
+	
+    <!-- Page Content -->	
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Entries Column -->
+        <div class="col-md-9">
+
+          <h2 class="my-4"><span style="color:darkblue">COMP 2211</span>
+            <small>Exploring Artificial Intelligence</small>
+          </h2>
+		  
+		  <!-- ### Change lab number and title ### -->
+		  <h3 class="my-4">Lab 9:
+            <span style="color:#660066">Minimax and Alpha-Beta Pruning</span>
+          </h3>
+		  
+		  <!-- Review section -->
+		  <!-- ### Complete the review section for the lab ### -->
+          <div class="card mb-4">      
+            <div class="card-body" id="review">
+              <h3 class="card-title">Review</h3>
+			  <!-- <br/>
+			  <h4>Sub-section heading</h4>
+			  <br/> -->
+			  <p class="card-text">
+          <img src="./COMP 2211 Lab 9_ Minimax and Alpha-Beta Pruning_files/review_teaser.jpg" alt="Lab review notebook" width="100%">
+          <br><br>
+          This part reviews minimax and alpha-beta pruning. It aims to refresh your memory of what you have learned in class.
+			    Before you start your lab work,
+          read through the review first. 
+          The review will cover:
+          </p><ul>
+            <li>Minimax in general</li>
+            <li>Steps of the Minimax algorithm</li>
+            <li>Disadvantages of Minimax Algorithm</li>
+            <li>Alpha-Beta Pruning
+            <!-- <li>Alpha-beta pruning with depth</li> -->
+          </li></ul>
+          To open the review notebook, please right-click and save the 
+          <a href="https://course.cse.ust.hk/comp2211/labs/lab9/files/lab9_review.ipynb">link</a>
+           as ".ipynb". And you will see the following if you save and open the right file properly.
+           <br><br>
+           <img src="./COMP 2211 Lab 9_ Minimax and Alpha-Beta Pruning_files/review_img_w.jpg" alt="Lab review notebook" width="100%">
+			  <p></p>
+			  			  
+			  <!-- <h4>Sub-section heading</h4>
+			  <br/> -->
+			  <!-- <p class="card-text">
+			    ...
+			  </p> -->
+            </div>
+			<div class="card-footer text-muted">
+              End of Review
+            </div>
+          </div>
+
+          <!-- Introduction section -->
+		  <!-- ### Complete introduction section for the lab ### -->
+          <div class="card mb-4">
+		  
+		    <!-- ### Add an image representing the lab content here ### -->
+            <!-- <img class="card-img-top" src="images/simple_vs_multiple.jpg" alt="Card image cap"> -->
+			
+            <div class="card-body" id="introduction">
+              <h3 class="card-title">Introduction</h3>
+              <p class="card-text">
+                <img src="./COMP 2211 Lab 9_ Minimax and Alpha-Beta Pruning_files/task_intro.jpg" alt="Lab work notebook" width="100%">
+                In this lab, we will implement a 
+                very simple two city game where both of the cities wish to capture the other, 
+                using minimax and alpha-beta pruning algorithms. You will use minimax to search for the best actions,
+                based on their utilities or evaluations.
+                
+			  </p>
+			  <!-- <br/> -->
+			  
+			  <!-- <h4>Sub-section heading</h4>
+			  <p>
+			    ...
+			  </p>
+			  <br/>
+			  
+			  <h4>Sub-section heading</h4>
+			  <p>
+			    ...
+			  </p>			   -->
+            </div>
+            <div class="card-footer text-muted">
+              End of Introduction
+            </div>
+          </div>
+
+          <!-- Lab work section -->
+		  <!-- ### Complete the lab work section for the lab ### -->
+          <div class="card mb-4">      
+            <div class="card-body" id="labwork">
+              <h3 class="card-title">
+                <p id="labwork">Lab Work</p>
+              </h3>
+			  <br>
+			  <!-- <h4>Task 1 - ...</h4>
+			  <br/> -->
+			  <p class="card-text">
+			    You are given a set of lab tasks to deepen your understanding of minimax &amp; alpha-beta pruning and practice your hands-on skills in building an AI game search model and playing with it. 
+          To start it, please download the <a download="" href="https://course.cse.ust.hk/comp2211/labs/lab9/files/lab9_task.ipynb">lab notebook</a> by right-clicking and choosing "save link as" to save it as an ".ipynb" file and follow the instructions in the notebook.
+			    <br><br>
+          If you would like to construct other test cases or play some other games with your AI, please feel free to edit any code inside
+          if __name__ == "__main__". NEVER add any additional print statement (or equivalent) outside if __name__ == "__main__". 
+          Otherwise you may NOT be able to pass test cases in ZINC.
+        </p>
+			  <!-- For code -->
+			  <!-- <pre class="shadow-sm rounded"><code>def SomeFunctionICannotFinishRightNow():
+   return 0
+
+def SomeFunctionICannotFinishRightNowButIWantOtherPartsGraded():
+</code></pre> -->
+
+			  <!-- <h4>Task 1 - ...</h4>
+			  <br/> -->
+			  <p class="card-text">
+            <b>Test cases for this lab</b>: <br> 
+			    </p><ul>
+            <li>Test #1: function move_warriors_in_place (2 pts).</li>
+            <li>Test #2: function evaluate (2 pts).</li>
+            <li>Test #3: function minimax (2 pts).</li>
+            <li>Test #4: function alphabeta (2 pts).</li>
+            <li>Test #5: function alphabeta carries out pruning correctly (2 pts). </li>
+          </ul>
+			  <p></p>
+        <br>
+            </div>
+			<div class="card-footer text-muted">
+              End of Lab Work
+            </div>
+          </div>
+
+          <!-- Resources section -->
+		  <!-- ### Complete resources section for the lab ### -->
+          <!-- <div class="card mb-4">            
+            <div class="card-body" id="resources">
+              <h3 class="card-title">Resources &amp; Sample I/O</h3>
+			  <ul>
+			    <li>Skeleton code: <a href="">...</a></li>
+				<li>Demo program (executable for Windows): <a href="">...</a></li>
+			  </ul>
+              <h4>Sample I/O</h4>
+            </div>            
+			<div class="card-footer text-muted">
+              End of Resources &amp; Sample I/O
+            </div>
+          </div> -->          
+          <div class="card mb-4">            
+            <div class="card-body" id="grading">
+              <h3 class="card-title">Submission &amp; Grading</h3> 
+        <ul>
+          <li>Deadline: <font color="#f00">02, December, 2025, 23:59.</font></li>
+          <li>You may earn 10 points for this lab via Automated Grading on the <a href="https://zinc.cse.ust.hk/">ZINC Online Submission System</a>. See the grading scheme as above.</li>
+          <li>Save your Python Notebook as a <code>lab9_task.py</code> file from Google Colab by clicking File -&gt; Download -&gt; Download .py.</li>
+          <li>Compress the .py file to a zip file. The name of the zip file does not matter.</li>
+          <li>Submit the zip file to ZINC.</li>
+          <li>You may submit your file multiple times, but only the latest version will be graded.</li>
+          <li>Lab work submitted via channels other than ZINC will <font color="red">NOT</font> be accepted. Late submissions will <font color="red">NOT</font> be accepted either.</li>
+        </ul>
+            </div>
+			<div class="card-footer text-muted">
+              End of Submission &amp; Grading
+            </div>
+          </div>
+		  
+		  <!-- Grading scheme section -->
+		  <!-- ### Complete grading section for the lab ### -->
+          <div class="card mb-4">            
+            <div class="card-body" id="grading">
+              <h3 class="card-title">Frequently Asked Questions</h3>
+              <ul>
+                <!--<li>
+                  <span style="font-weight:bold">UPDATES on lab5_task.ipynb (Please download the latest version):</span><br/>
+                  - Updated the description and task definition for task1, task2.2, and task 2.3 <br/>
+                  - Added examples for difference between numpy.dot() and numpy.matmul() <br/>
+                  - Added demo of sklearn implementation for the lab tasks <br/>
+                  
+                  
+              <br/>
+                </li>-->
+              </ul>
+                          <!-- <p class="card-text">This list is incomplete. You can always help by <a href="mailto:zxiebb@connect.ust.hk"><u>expanding it</u>.</a> -->
+                          <p class="card-text">(1) The interactive game is not related to the testing cases, just for debugging.
+                          </p></div>
+                  	<div class="card-footer text-muted">
+              End of Frequently Asked Questions. Don't hesitate to ask ;)
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-3">
+		  <div class="sticky-top">
+            <!-- Menu Widget -->
+            <div class="card my-12">
+              <h5 class="card-header">Menu</h5>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <ul class="mb-0" type="circle" style="padding-left:20px">
+					  <li>
+                        <a href="https://course.cse.ust.hk/comp2211/labs/lab9/#review">Review</a>
+                      </li>
+                      <li>
+                        <a href="https://course.cse.ust.hk/comp2211/labs/lab9/#introduction">Introduction</a>
+                      </li>
+                      <li>
+                        <a href="https://course.cse.ust.hk/comp2211/labs/lab9/#labwork">Lab Work</a>
+                      </li>
+                      <!-- <li>
+                        <a href="#resources">Resources &amp; Sample I/O</a>
+                      </li> -->
+			  		  <li>
+				  	    <a href="https://course.cse.ust.hk/comp2211/labs/lab9/#grading">Submission &amp; Deadline</a>
+					  </li>
+					  <li>
+						<a href="https://course.cse.ust.hk/comp2211/labs/lab9/#faq">Frequently Asked Questions</a>
+					  </li>
+                    </ul>
+                  </div>                
+                </div>
+              </div>
+		    </div>
+          		  
+		    <!-- Maintainance widget -->
+            <div class="card my-4">
+              <h5 class="card-header">Page maintained by</h5>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <ul class="list-unstyled mb-0">
+                      <li>
+                        Linshan WU
+                      </li>
+                      <li>
+                        Email: <a href="mailto:lwubf@connect.ust.hk">lwubf@connect.ust.hk</a>
+                      </li>
+                      <li>
+                        Lab Task Designer: Zequan XIE
+                      </li>
+					  <li>Last Modified: <script type="text/javascript">document.write(document.lastModified);</script>11/27/2025 18:44:07</li>
+                    </ul>
+                  </div>				
+                </div>
+              </div>
+			</div>          
+		  		  
+		    <!-- Homepage widget -->
+            <div class="card my-4">
+              <h5 class="card-header">Homepage</h5>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <ul class="list-unstyled mb-0">
+                      <li>
+                        <a href="http://course.cse.ust.hk/comp2211">Course Homepage</a>
+                      </li>
+                    </ul>
+                  </div>				
+                </div>
+              </div>
+            </div>
+	      </div>
+        </div>
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Maintained by COMP 2211 Teaching Team © 2025 HKUST Computer Science and Engineering</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="./COMP 2211 Lab 9_ Minimax and Alpha-Beta Pruning_files/jquery.min.js.download"></script>
+    <script src="./COMP 2211 Lab 9_ Minimax and Alpha-Beta Pruning_files/bootstrap.bundle.min.js.download"></script>	
+  
+
+
+</body></html>
