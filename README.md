@@ -29,11 +29,16 @@ Clone this repository to access course materials:
 git clone https://github.com/CriticalLine/COMP2211.git
 ```
 
+## Development
+
+Welcome to add the latest course's materials or your note/idea about this course.
+
 ## License
 
 Course materials are for educational purposes only.
 Unauthorized distribution is prohibited.
 All rights reserved by **HKUST** and the course instructors.
 Please refer to the `LICENSE` and `LICENSE_additional` files for more details.
+
 
 
