@@ -1,24 +1,27 @@
 ## Steps
+
 1. download the files
-2. open `test_task2.py` and copy the code to your notebook **or** put the functions code in `test_task2.py`   
+2. open `test_task2.py` and copy the code to your notebook **or** put the functions code in `test_task2.py`
 3. put dataset files `.csv` to the corresponding folder
-4. run the code to see the result 
+4. run the code to see the result
 
 If you see some weird characters in the output, change
+
 ```python
 if not issue_found:
-	print("\033[92mTest Passed!\033[0m")
+ print("\033[92mTest Passed!\033[0m")
 else:
-	print("\033[91mTest Failed!\033[0m")
-```
-to
-```python
-if not issue_found:
-	print("Test Passed!")
-else:
-	print("Test Failed!")
+ print("\033[91mTest Failed!\033[0m")
 ```
 
+to
+
+```python
+if not issue_found:
+ print("Test Passed!")
+else:
+ print("Test Failed!")
+```
 
 Summary of my models:
 
@@ -26,5 +29,3 @@ Summary of my models:
 - CNN: Total params: 52,865 (206.50 KB)  82.6% on test dataset
 
 I got 88.2% acc for mlp model, and 87.3% for cnn model on ZINC.
-
-You can ask questions in the discussion here instead of **Piazza**. If you want to know some secret.
