@@ -9,18 +9,18 @@ If you see some weird characters in the output, change
 
 ```python
 if not issue_found:
- print("\033[92mTest Passed!\033[0m")
+    print("\033[92mTest Passed!\033[0m")
 else:
- print("\033[91mTest Failed!\033[0m")
+    print("\033[91mTest Failed!\033[0m")
 ```
 
 to
 
 ```python
 if not issue_found:
- print("Test Passed!")
+    print("Test Passed!")
 else:
- print("Test Failed!")
+    print("Test Failed!")
 ```
 
 Summary of my models:
