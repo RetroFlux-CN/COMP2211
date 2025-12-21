@@ -12,9 +12,9 @@
 - Lower Quartile: 44.68
 
 **Final**
-- High: 92.2
+- High: 94.5
 - Low: 0
-- Mean: 64.42
-- Median: 66.5
-- Upper Quartile: 77.81	
-- Lower Quartile: 54.68	
+- Mean: 64.9
+- Median: 66.45
+- Upper Quartile: 78.7
+- Lower Quartile: 55.23
