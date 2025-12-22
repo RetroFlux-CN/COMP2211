@@ -1,7 +1,8 @@
 # COMP2211
 
 HKUST COMP2211 - Fall 2025
-Instructor: XIAO Huiru
+
+Instructor: [XIAO Huiru](https://huiruxiao.github.io/)
 
 ## About
 
@@ -14,6 +15,10 @@ This repository contains course materials and resources for COMP2211 (Exploring 
 - Lab exercises
 - Past exam papers
 - Homepage of the course: [COMP2211 Course Page](https://course.cse.ust.hk/comp2211/)
+
+## Lecture Videos
+
+[Lecture Recordings on YouTube](https://www.youtube.com/playlist?list=PLShSJqjCpwn8JzMlubymWv7WpevXSrJ8u)
 
 ## Course Information
 
@@ -28,9 +33,17 @@ Clone this repository to access course materials:
 git clone https://github.com/CriticalLine/COMP2211.git
 ```
 
+## Development
+
+Welcome to add the latest course's materials or your note/idea about this course.
+
 ## License
 
 Course materials are for educational purposes only.
 Unauthorized distribution is prohibited.
 All rights reserved by **HKUST** and the course instructors.
 Please refer to the `LICENSE` and `LICENSE_additional` files for more details.
+
+
+
+
