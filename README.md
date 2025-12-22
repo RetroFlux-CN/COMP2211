@@ -16,6 +16,9 @@ This repository contains course materials and resources for COMP2211 (Exploring 
 - Past exam papers
 - Homepage of the course: [COMP2211 Course Page](https://course.cse.ust.hk/comp2211/)
 
+Bonus:
+- Secret about ZINC
+
 ## Lecture Videos
 
 [Lecture Recordings on YouTube](https://www.youtube.com/playlist?list=PLShSJqjCpwn8JzMlubymWv7WpevXSrJ8u)
@@ -43,6 +46,7 @@ Course materials are for educational purposes only.
 Unauthorized distribution is prohibited.
 All rights reserved by **HKUST** and the course instructors.
 Please refer to the `LICENSE` and `LICENSE_additional` files for more details.
+
 
 
 
