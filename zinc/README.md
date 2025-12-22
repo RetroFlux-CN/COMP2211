@@ -89,6 +89,15 @@ def func_name(args):
     return pd.read_pickle("dataset").to_numpy()
 ```
 
+### Get Files Content
+
+Since ZINC has two output streams: `stdout` and `stderr`, so we can use the python module `warnings` to print out hidden information to `stderr`.
+
+```python
+import warnings
+warnings.warn("This is a warning message that will be printed to stderr.")
+```
+
 ### Debugging
 
 Run python files. You can print out some hidden but useful information for debugging.
@@ -162,3 +171,7 @@ Remark: Add
 ```
 
 at the beginning of the python file may help to run the script successfully.
+
+## Example
+
+See `example.py` for an example of inject ZINC.
