@@ -1,4 +1,4 @@
-# COMP2211
+# COMP2211 Exploring Artificial Intelligence
 
 HKUST COMP2211 - Fall 2025
 
@@ -48,6 +48,7 @@ Course materials are for educational purposes only.
 Unauthorized distribution is prohibited.
 All rights reserved by **HKUST** and the course instructors.
 Please refer to the `LICENSE` and `LICENSE_additional` files for more details.
+
 
 
 
