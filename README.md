@@ -18,9 +18,6 @@ It is an **unofficial** backup of the course.
 - Past exam papers
 - Homepage of the course: [COMP2211 Course Page](https://course.cse.ust.hk/comp2211/)
 
-Bonus:
-- Secret about ZINC
-
 ## Lecture Videos
 
 [Lecture Recordings on YouTube](https://www.youtube.com/playlist?list=PLShSJqjCpwn8JzMlubymWv7WpevXSrJ8u)
